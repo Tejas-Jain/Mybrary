@@ -29,6 +29,23 @@
     font-size: 2em;
     font-family: "";
 }
+.error-message{
+    font-size: 1.2em;
+    color: red;
+}
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
+.libraryName{
+    font-family:"Booter - Zero Zero";
+    color: white;
+    font-weight: normal;
+}
+.large{
+    font-size: 7rem;
+}
+
 /*************HEADER*************/
 header{
     background-image: url(Header\ Background.png) ;
@@ -62,14 +79,6 @@ nav th:hover{
     color: white;
     background-color: grey;
 }
-.libraryName{
-    font-family:"Booter - Zero Zero";
-    color: white;
-    font-weight: normal;
-}
-.large{
-    font-size: 7rem;
-}
 
 
 
@@ -87,7 +96,7 @@ form input{
     height: 1.5rem;
     width: 80%;
     font-size: 1.5em;
-    margin-top: 0.=;
+    margin-top: 0.5;
     margin-bottom: 1em;
 }
 form div{
@@ -104,6 +113,11 @@ section ol{
 }
 .nameList{
     font-size: 1.1rem;
+}
+ol img{
+    height: 40 em;
+    width: 12 em;
+    border-radius: 20%;
 }
 
 

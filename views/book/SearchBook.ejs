@@ -1,0 +1,20 @@
+<section>
+    <form action="/Book/SearchBook" method="get" class='flex'>
+        <label for="title" class="labelName">Title</label><br>
+        <input type="text" id="title" name="title" value='<%= searchOptions.title %>'>
+        <label for="publishAfter" class="labelName">Publish After</label><br>
+        <input type="date" id="publishAfter" name="publishAfter" value='<%= searchOptions.publishAfter %>'>
+        <label for="publishBefore" class="labelName">Publish Before</label><br>
+        <input type="date" id="publishBefore" name="publishBefore" value='<%= searchOptions.publishBefore %>'>
+        <div><button type="submit" class="button" >SEARCH</button></div>
+    </form>
+    <h3>Books: </h3>
+    <ol class='flex'>
+        <% books.forEach(book => { %>
+            <li class='nameList'>
+                <img src="<%= book.coverImagePath() %>" alt=" <%= book.title %> Cover Image">
+                <div><%= book.title %> </div>
+            </li>
+        <% }) %>
+    </ol>
+</section>

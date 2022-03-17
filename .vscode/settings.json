@@ -1,0 +1,9 @@
+{
+    "liveServer.settings.CustomBrowser": "chrome:PrivateMode",
+    "files.autoSaveDelay": 100,
+    "files.autoSave": "afterDelay",
+    "cSpell.ignoreWords": [
+        "atleast",
+        "bcoz"
+    ]
+}

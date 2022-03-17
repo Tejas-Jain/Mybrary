@@ -1,0 +1,48 @@
+//Mongoose Db practice Queries - Just Paste Them in Server.js(main app file) to see them in action
+const kittySchema = new mongoose.Schema({       //Creating A Schema for Database, This is kind of grouped list of data members and member function
+    name: String                                //Equivalent to Data Members in OOP
+});
+// NOTE: methods must be added to the schema before compiling it with mongoose.model()
+kittySchema.methods.speak = function () {       //Adding Function to Schema
+    const greeting = this.name                  //Function here is ana. to Member Function of Class in OOP
+      ? "Meow name is " + this.name
+      : "I don't have a name";
+    console.log(greeting);
+}
+//NoteDb: We can use Multiple Schema to Make a single Model.
+const Kitten = mongoose.model('Kitten', kittySchema);  //Creating Model named Kitten From Schema, Equivalent to class Kitten in OOP
+
+// Kitten.create({name:'tom'},{name: 'jerry'},{name:'bob'},(err)=>{
+        if(err)return handleError(err,nam)
+    });
+Kitten.create({name:'tom'},{name: 'jerry'},{name:'bob'},function(err, nam,man,sam){    //Creating Instances of Model(class)
+    if(err)return handleError(err)                                                     //,ana. to Objects(nam,man,sam) of Class Kitten
+    console.log(nam.name)
+    console.log(man.name)
+    console.log(sam.name)
+});
+console.log(nam.name)
+console.log(man.name)
+console.log(sam.name)console.log(tom.name)
+const silence = new Kitten({ name: 'Silence' });
+silence.save((err)=>{
+    if(err) return console.error(err);
+})
+
+//Method 3 of 3 to create new Record from Model
+const fluffy = new Kitten({ name: 'fluffy' });
+fluffy.save(function (err, fluffy) {
+    if (err) return console.error(err);
+    console.log(silence.name)
+});
+
+//Finding the Records from the Database
+Kitten.find(function (err, kittens) {
+    if (err) return console.error(err);
+    console.log(kittens);
+})
+
+//Deleting Many Records from the Database
+Kitten.deleteMany({},function (error){
+    if(error) return console.error(error)
+})
