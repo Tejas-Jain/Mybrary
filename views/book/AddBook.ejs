@@ -1,6 +1,6 @@
 <section>
     <h1 class='libraryName'>New Book</h1>
-    <form action="/Book/AddBook" method="post" class='flex' enctype="multipart/form-data">
+    <form action="/Book/AddBook" method="post" class='flex'>
         <label for="title" class="labelName">Title</label><br>
             <input type="text" id="title" name="title" value='<%= book.title %>'>
         <label for="authorName" class="labelName">Author's Name</label><br>
@@ -19,7 +19,9 @@
         <label for="pageCount" class="labelName">Page Count</label><br>
             <input type="number" id="pageCount" name="pageCount" value='<%= book.pageCount %>'>
         <label for="cover" class="labelName">Cover</label><br>
-            <input type="file" id="cover" name="cover">
+            <input type="file" id="cover" name="cover" class="filepond">
+        <!-- <label for="back" class="labelName">Back</label><br>
+            <input type="file" id="back" name="back" class="filepond"> -->
         <label for="description" class="labelName">Description</label><br>
             <textarea name="description" id="description" cols="30" rows="5"><%= book.description %></textarea>
         <div>

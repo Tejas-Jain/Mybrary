@@ -12,7 +12,7 @@
     <ol class='flex'>
         <% books.forEach(book => { %>
             <li class='nameList'>
-                <img src="<%= book.coverImagePath() %>" alt=" <%= book.title %> Cover Image">
+                <img width='100' height='150' src="<%= book.coverImagePath() %>" alt=" <%= book.title %> Cover Image">
                 <div><%= book.title %> </div>
             </li>
         <% }) %>

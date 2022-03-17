@@ -1,4 +1,4 @@
-//IMPORTING EVIROMENT VARIABLE TO THE APPLICATION
+//IMPORTING ENVIRONMENT VARIABLE TO THE APPLICATION
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
@@ -31,7 +31,7 @@ db.once('open',()=>{
 
 
 
-// //Mongoose Db practise Queries - Just Uncomment these to see them in Action
+// //Mongoose Db practice Queries - Just Uncomment these to see them in Action
 // const kittySchema = new mongoose.Schema({
 //     name: String
 // });

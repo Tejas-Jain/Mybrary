@@ -2,18 +2,8 @@ const express = require('express')
 const router = express.Router()
 const Book = require('../models/book')
 const Author = require('../models/authors')
-const multer = require('multer')
 const path = require('path')
-const fs = require('fs')
 const imgMimeTypes = ['image/jpeg','image/png','image/gif']
-const uploadPath = path.join('public',Book.coverImageBasePath)
-const upload = multer({
-    dest: uploadPath,
-    fileFilter: (req,file,callback) => {
-        callback(null,imgMimeTypes.includes(file.mimetype))
-    }
-})
-
 
 //Getting /book/AddBook Routes
 router.get('/AddBook',async (req,res)=>{
@@ -51,28 +41,23 @@ router.get('/SearchBook',async (req,res)=>{
 })
 
 //Storing New Book Data to Database through book Model
-router.post('/AddBook',upload.single('cover'),async (req,res)=>{
-    const fileName = req.file != null ? req.file.filename : null 
-    console.log(req.file)
+router.post('/AddBook',async (req,res)=>{
     const book = new Book({
         title: req.body.title,
         publishDate: new Date(req.body.publishDate),
         pageCount: req.body.pageCount,
         description: req.body.description,
-        coverImageName: fileName,
         authorName: req.body.authorName,
     })
+    saveCover(book, req.body.cover)
+
     try{
         const newBook = await book.save()
         var books = new Book()
         message='New Book Created Successfully'
         renderNewPage(res,books,message)
     }
-    catch{
-        if(book.coverImageName!=null)
-            fs.unlink(path.join(uploadPath,book.coverImageName),error =>{   //Using Callback instead of try-catch or 
-                if(error) console.error('error')                            //,async await bcoz it is one single function
-            })                                                              //, and simplest form of them use atleast 3-4 lines
+    catch{                                                          //, and simplest form of them use atleast 3-4 lines
         var message= 'Error Creating the New Book, Please Check the Entered Data!!!'//So its best to use Simple Callback here
         renderNewPage(res,book,message)
     }
@@ -93,6 +78,18 @@ async function renderNewPage(res,books,message = ''){
         console.log("Adding Book Not Available")
         res.redirect('book/SearchBook')
     }
+}
+
+//function to save encoded CoverImage Received as FilePond JASON String Object
+function saveCover(book, encodedCover){
+    if(encodedCover== null) 
+        return
+    const cover = JSON.parse(encodedCover)
+    if(cover != null && imgMimeTypes.includes(cover.type)){
+        book.coverImage = new Buffer.from(cover.data,'base64')
+        book.coverImageType = cover.type
+    }
+    return
 }
 
 module.exports = router
